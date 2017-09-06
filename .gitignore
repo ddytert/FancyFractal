@@ -19,9 +19,16 @@ xcuserdata/
 *.moved-aside
 *.xccheckout
 *.xcscmblueprint
+*.xcuserstate
+*.xcscheme
 
 ## Obj-C/Swift specific
 *.hmap
 *.ipa
 *.dSYM.zip
 *.dSYM
+
+# NB: NIB/XIB files still exist even on Storyboard projects, so we want this
+*~.nib
+*.swp
+
