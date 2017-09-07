@@ -4,7 +4,7 @@ A fractal viewer for Mac OS  X, programmed in C++ using an Objective-C++ wrapper
 The code for the creation of fractals was taken from John Purcell's online course "Learn Advanced C++ Programming" on Udemy,
 a great course by the way.
 
-As an exercise I wanted to 'connect' the fractal creation classes, written in C++, to swift to display the rendered
+As an exercise I wanted to 'connect' the fractal creation classes, written in C++, to swift classes to display the rendered
 fractals in a windwow on a Mac.
 
 I use a "FCWrapper"-object written in Objective-C and C++ (a a mixture of both languages, the file has .mm as ending).
