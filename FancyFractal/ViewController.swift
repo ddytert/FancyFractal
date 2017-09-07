@@ -22,6 +22,7 @@ class ViewController: NSViewController, FractalViewDelegate {
     
     @IBOutlet weak var fractalView: FractalView!
     @IBOutlet weak var zoomSlider: NSSlider!
+    @IBOutlet weak var renderStatLabel: NSTextField!
     
     @IBAction func resetFractal(_ sender: NSButton) {
         
@@ -37,6 +38,7 @@ class ViewController: NSViewController, FractalViewDelegate {
         fcWrapper = FCWrapper(size: fs, bitmapData:pBitmapBuffer)
         
         bIsRendering = true
+        renderStatLabel.isHidden = false
         
         DispatchQueue.global(qos: .userInitiated).async {
             self.fcWrapper.startRendering();
@@ -44,6 +46,7 @@ class ViewController: NSViewController, FractalViewDelegate {
             DispatchQueue.main.async {
                 self.showFractalImage()
                 self.bIsRendering = false
+                self.renderStatLabel.isHidden = true
             }
         }
 
@@ -66,6 +69,7 @@ class ViewController: NSViewController, FractalViewDelegate {
             return
         }
         bIsRendering = true
+        renderStatLabel.isHidden = false
         
         DispatchQueue.global(qos: .userInitiated).async {
             self.fcWrapper.zoomIntoFractal(at: location, withZoom: self.zoomSlider.doubleValue)
@@ -73,6 +77,7 @@ class ViewController: NSViewController, FractalViewDelegate {
             DispatchQueue.main.async {
                 self.showFractalImage()
                 self.bIsRendering = false
+                self.renderStatLabel.isHidden = true
             }
         }
     }
@@ -122,6 +127,7 @@ class ViewController: NSViewController, FractalViewDelegate {
         self.view.layer = CALayer()
         
         bIsRendering = true
+        renderStatLabel.isHidden = false
         
         DispatchQueue.global(qos: .userInitiated).async {
             self.fcWrapper.startRendering();
@@ -129,6 +135,7 @@ class ViewController: NSViewController, FractalViewDelegate {
             DispatchQueue.main.async {
                 self.showFractalImage()
                 self.bIsRendering = false
+                self.renderStatLabel.isHidden = true
             }
         }
     }

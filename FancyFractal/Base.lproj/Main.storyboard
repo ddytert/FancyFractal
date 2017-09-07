@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="11762" systemVersion="16F73" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12118"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
         <capability name="system font weights other than Regular or Bold" minToolsVersion="7.0"/>
     </dependencies>
@@ -724,8 +724,21 @@
                                     <action selector="sliderValueChanged:" target="XfG-lQ-9wD" id="JCh-Yh-dlz"/>
                                 </connections>
                             </slider>
+                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aWn-nv-bc7" userLabel="Render Stat Label">
+                                <rect key="frame" x="693" y="563" width="89" height="17"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="85" id="tXc-ll-odm"/>
+                                </constraints>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Rendering..." id="cpz-ka-TSb">
+                                    <font key="font" metaFont="systemLight" size="13"/>
+                                    <color key="textColor" name="controlLightHighlightColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
+                            <constraint firstAttribute="trailing" secondItem="aWn-nv-bc7" secondAttribute="trailing" constant="20" id="0N0-zn-sG0"/>
+                            <constraint firstItem="aWn-nv-bc7" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="0os-M5-TpF"/>
                             <constraint firstAttribute="trailing" secondItem="PKb-M8-kSm" secondAttribute="trailing" id="7bQ-TI-rhG"/>
                             <constraint firstItem="3Zb-II-jeh" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="JeV-sb-sJ4"/>
                             <constraint firstAttribute="bottom" secondItem="3Zb-II-jeh" secondAttribute="bottom" constant="20" id="SYl-pR-R8A"/>
@@ -740,6 +753,7 @@
                     </view>
                     <connections>
                         <outlet property="fractalView" destination="PKb-M8-kSm" id="lRn-ht-xF6"/>
+                        <outlet property="renderStatLabel" destination="aWn-nv-bc7" id="xxb-9B-Jyh"/>
                         <outlet property="zoomSlider" destination="3Zb-II-jeh" id="ueI-P3-mRg"/>
                     </connections>
                 </viewController>
