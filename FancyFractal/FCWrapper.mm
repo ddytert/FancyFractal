@@ -3,7 +3,7 @@
 //  FancyFractal
 //
 //  Created by Daniel Dytert on 25.08.17.
-//  Copyright © 2017 Daniel Dytert. All rights reserved.
+//  Copyright © 2015 John Purcell. All rights reserved.
 //
 /*
  It’s as simple as that! Note the property is declared as assign, as you cannot use strong or weak because these don't make sense with non-Objective-C object types. The compiler cannot “retain” or “release” a C++ object type, because it’s not an Objective-C object.
