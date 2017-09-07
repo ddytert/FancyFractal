@@ -3,7 +3,7 @@
 //  FancyFractal
 //
 //  Created by Daniel Dytert on 25.08.17.
-//  Copyright © 2015 John Purcell. All rights reserved.
+//  Copyright © 2017 Daniel Dytert. All rights reserved.
 //
 
 #ifndef FCWrapper_h
