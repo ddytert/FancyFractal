@@ -3,7 +3,7 @@
 //  Lecture_30
 //
 //  Created by Daniel Dytert on 10.08.17.
-//  Copyright © 2017 DanLo Interactive. All rights reserved.
+//  Copyright © 2015 John Purcell. All rights reserved.
 //
 
 #ifndef BitmapFileHeader_h
