@@ -13,7 +13,8 @@ an FCWrapper object and calls methods on this object. The FCWrapper object itsel
 "FractalCreator" C++ class. The calls from the ViewController are redirected via the FCWrapper object to the
 FractalCreator object. The FractalCreator object holds a pointer to a raw bitmap buffer. The bitmap buffer is created
 in the ViewController object and a pointer to the buffer is given via the FCWrapper object to the FractalCreator object.
-The FractalCreator writes directly into the buffer via a Bitmap object, which has a pointer to the bitmap.
+The FractalCreator writes directly into the buffer via an object of the Bitmap.cpp class, which also has a pointer to
+the bitmap.
 
 
 
