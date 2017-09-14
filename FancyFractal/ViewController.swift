@@ -72,11 +72,16 @@ class ViewController: NSViewController, FractalViewDelegate {
         
         let zoomSlider = sender
         zoomFactor = zoomSlider.doubleValue * zoomMultiplier
+        
+        fractalView.zoomFactor = CGFloat(zoomFactor)
+        fractalView.setNeedsDisplay(fractalView.frame)
     }
     
     @IBAction func zoomModeSwitchValueChanged(_ sender: NSSegmentedControl) {
         
-        print("Zoom mode: \(sender)")
+        zoomFactor = zoomSlider.doubleValue * zoomMultiplier
+        fractalView.zoomFactor = CGFloat(zoomFactor)
+        fractalView.setNeedsDisplay(fractalView.frame)
         setupZoomScale()
     }
     
@@ -141,8 +146,9 @@ class ViewController: NSViewController, FractalViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        zoomFactor = zoomSlider.doubleValue * zoomMultiplier
         fractalView.delegate = self
-        fractalView.zoomFactor = CGFloat(zoomSlider.doubleValue * zoomMultiplier)
+        fractalView.zoomFactor = CGFloat(zoomFactor)
         
         let fs = self.view.frame.size
         
