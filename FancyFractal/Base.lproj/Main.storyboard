@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="12118" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="13122.17" systemVersion="16G29" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="12118"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="13122.17"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
         <capability name="system font weights other than Regular or Bold" minToolsVersion="7.0"/>
     </dependencies>
@@ -689,6 +689,25 @@
                         <subviews>
                             <customView translatesAutoresizingMaskIntoConstraints="NO" id="PKb-M8-kSm" customClass="FractalView" customModule="FancyFractal" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="800" height="600"/>
+                                <subviews>
+                                    <segmentedControl verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ngg-63-LHH">
+                                        <rect key="frame" x="711" y="557" width="71" height="24"/>
+                                        <segmentedCell key="cell" borderStyle="border" alignment="left" style="rounded" trackingMode="selectOne" id="EIh-OG-nsS">
+                                            <font key="font" metaFont="system"/>
+                                            <segments>
+                                                <segment label="Out" width="32"/>
+                                                <segment label="In" width="32" selected="YES" tag="1"/>
+                                            </segments>
+                                        </segmentedCell>
+                                        <connections>
+                                            <action selector="zoomModeSwitchValueChanged:" target="XfG-lQ-9wD" id="sm7-j2-8FW"/>
+                                        </connections>
+                                    </segmentedControl>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="trailing" secondItem="ngg-63-LHH" secondAttribute="trailing" constant="20" id="jBx-IA-na2"/>
+                                    <constraint firstItem="ngg-63-LHH" firstAttribute="top" secondItem="PKb-M8-kSm" secondAttribute="top" constant="20" id="yP5-BK-NFe"/>
+                                </constraints>
                             </customView>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aMN-W5-cjx" userLabel="Reset Button">
                                 <rect key="frame" x="705" y="13" width="81" height="32"/>
@@ -703,7 +722,7 @@
                                     <action selector="resetFractal:" target="XfG-lQ-9wD" id="epa-hY-7Lf"/>
                                 </connections>
                             </button>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="x3d-Vg-vFs">
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="x3d-Vg-vFs">
                                 <rect key="frame" x="18" y="47" width="189" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="185" id="ogW-A4-qXe"/>
@@ -724,12 +743,12 @@
                                     <action selector="sliderValueChanged:" target="XfG-lQ-9wD" id="JCh-Yh-dlz"/>
                                 </connections>
                             </slider>
-                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" allowsCharacterPickerTouchBarItem="NO" translatesAutoresizingMaskIntoConstraints="NO" id="aWn-nv-bc7" userLabel="Render Stat Label">
-                                <rect key="frame" x="693" y="563" width="89" height="17"/>
+                            <textField hidden="YES" horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="aWn-nv-bc7" userLabel="Render Stat Label">
+                                <rect key="frame" x="18" y="563" width="89" height="17"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="85" id="tXc-ll-odm"/>
                                 </constraints>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="right" title="Rendering..." id="cpz-ka-TSb">
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="left" title="Rendering..." id="cpz-ka-TSb">
                                     <font key="font" metaFont="systemLight" size="13"/>
                                     <color key="textColor" name="controlLightHighlightColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -737,7 +756,6 @@
                             </textField>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="aWn-nv-bc7" secondAttribute="trailing" constant="20" id="0N0-zn-sG0"/>
                             <constraint firstItem="aWn-nv-bc7" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="20" id="0os-M5-TpF"/>
                             <constraint firstAttribute="trailing" secondItem="PKb-M8-kSm" secondAttribute="trailing" id="7bQ-TI-rhG"/>
                             <constraint firstItem="3Zb-II-jeh" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="JeV-sb-sJ4"/>
@@ -747,6 +765,7 @@
                             <constraint firstAttribute="trailing" secondItem="aMN-W5-cjx" secondAttribute="trailing" constant="20" id="YUO-uR-znR"/>
                             <constraint firstItem="PKb-M8-kSm" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="d8Z-cu-A7P"/>
                             <constraint firstItem="3Zb-II-jeh" firstAttribute="top" secondItem="x3d-Vg-vFs" secondAttribute="bottom" constant="5" id="gNh-lh-KZR"/>
+                            <constraint firstItem="aWn-nv-bc7" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="20" id="jIJ-3S-kA4"/>
                             <constraint firstItem="PKb-M8-kSm" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="kip-ta-MnO"/>
                             <constraint firstAttribute="bottom" secondItem="aMN-W5-cjx" secondAttribute="bottom" constant="20" id="yeM-gp-uMA"/>
                         </constraints>
@@ -754,7 +773,9 @@
                     <connections>
                         <outlet property="fractalView" destination="PKb-M8-kSm" id="lRn-ht-xF6"/>
                         <outlet property="renderStatLabel" destination="aWn-nv-bc7" id="xxb-9B-Jyh"/>
+                        <outlet property="zoomModeSwitch" destination="ngg-63-LHH" id="EjC-Jr-vmC"/>
                         <outlet property="zoomSlider" destination="3Zb-II-jeh" id="ueI-P3-mRg"/>
+                        <outlet property="zoomSliderLabel" destination="x3d-Vg-vFs" id="37U-8n-UqE"/>
                     </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>

@@ -19,10 +19,26 @@ class ViewController: NSViewController, FractalViewDelegate {
     var bitmapBufSize: Int = 0
     var fcWrapper = FCWrapper()
     var bIsRendering = false
+    let zoomSteps = [0.1, 0.2, 0.3, 0.4, 0.5]
+    var zoomFactor = 1.0
+    
+    // Computed property
+    var zoomMultiplier: Double {
+        var zm = 1.0
+        if zoomModeSwitch.selectedSegment == 0 {
+            zm = 10.0
+        } else if zoomModeSwitch.selectedSegment == 1 {
+            zm = 1.0
+        }
+        return zm
+    }
     
     @IBOutlet weak var fractalView: FractalView!
     @IBOutlet weak var zoomSlider: NSSlider!
+    @IBOutlet weak var zoomSliderLabel: NSTextField!
     @IBOutlet weak var renderStatLabel: NSTextField!
+    @IBOutlet weak var zoomModeSwitch: NSSegmentedControl!
+    
     
     @IBAction func resetFractal(_ sender: NSButton) {
         
@@ -49,16 +65,28 @@ class ViewController: NSViewController, FractalViewDelegate {
                 self.renderStatLabel.isHidden = true
             }
         }
-
+        
     }
     
     @IBAction func sliderValueChanged(_ sender: NSSlider) {
         
         let zoomSlider = sender
-        fractalView.zoomFactor = CGFloat(zoomSlider.doubleValue)
-        fractalView.setNeedsDisplay(fractalView.frame)
-
+        zoomFactor = zoomSlider.doubleValue * zoomMultiplier
     }
+    
+    @IBAction func zoomModeSwitchValueChanged(_ sender: NSSegmentedControl) {
+        
+        print("Zoom mode: \(sender)")
+        setupZoomScale()
+    }
+    
+    func setupZoomScale() {
+        
+        let zm = zoomMultiplier     // Read computed property
+        let labelString = String("\(zoomSteps[0]*zm)      \(zoomSteps[1]*zm)       \(zoomSteps[2]*zm)       \(zoomSteps[3]*zm)       \(zoomSteps[4]*zm)")
+        zoomSliderLabel.stringValue = labelString!
+    }
+    
     
     // Delegate method
     func mouseClicked(at location: CGPoint) {
@@ -72,7 +100,7 @@ class ViewController: NSViewController, FractalViewDelegate {
         renderStatLabel.isHidden = false
         
         DispatchQueue.global(qos: .userInitiated).async {
-            self.fcWrapper.zoomIntoFractal(at: location, withZoom: self.zoomSlider.doubleValue)
+            self.fcWrapper.zoomIntoFractal(at: location, withZoom: self.zoomFactor)
             
             DispatchQueue.main.async {
                 self.showFractalImage()
@@ -89,15 +117,15 @@ class ViewController: NSViewController, FractalViewDelegate {
         
         // Create NSBitmapImageRep from bitmap buffer
         let optBitmapImageRep = NSBitmapImageRep(bitmapDataPlanes: &pBitmapBuffer,
-                                              pixelsWide: width,
-                                              pixelsHigh: height,
-                                              bitsPerSample: 8,
-                                              samplesPerPixel: 4,
-                                              hasAlpha: true,
-                                              isPlanar: false,
-                                              colorSpaceName: NSDeviceRGBColorSpace,
-                                              bytesPerRow: width * 4,
-                                              bitsPerPixel: 32)
+                                                 pixelsWide: width,
+                                                 pixelsHigh: height,
+                                                 bitsPerSample: 8,
+                                                 samplesPerPixel: 4,
+                                                 hasAlpha: true,
+                                                 isPlanar: false,
+                                                 colorSpaceName: NSDeviceRGBColorSpace,
+                                                 bytesPerRow: width * 4,
+                                                 bitsPerPixel: 32)
         
         guard let bitmapImageRep = optBitmapImageRep else {
             return
@@ -114,7 +142,7 @@ class ViewController: NSViewController, FractalViewDelegate {
         super.viewDidLoad()
         
         fractalView.delegate = self
-        fractalView.zoomFactor = CGFloat(self.zoomSlider.doubleValue)
+        fractalView.zoomFactor = CGFloat(zoomSlider.doubleValue * zoomMultiplier)
         
         let fs = self.view.frame.size
         
@@ -153,7 +181,7 @@ class ViewController: NSViewController, FractalViewDelegate {
         print("Bitmap buffer size: \(size.width) x \(size.height) * 4 = \(bSize)")
         
         bitmapBufSize = bSize
-}
+    }
     
     
     
